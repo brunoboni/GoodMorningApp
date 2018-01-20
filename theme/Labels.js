@@ -1,0 +1,28 @@
+//Portugues
+export const Labels = {
+    email: 'Email',
+    password: 'Senha',
+    confirmpassword: 'Confirme a Senha',
+    name: 'Nome',
+    entry: 'Entrar',
+    title: 'Good Morning App',
+    textregister: 'Registre-se',
+    register: 'Cadastrar',
+    phone: 'Telefone',
+    titlelogin: 'Bom Dia!',
+    errorpassword: 'As senhas não conferem',
+    confirmenvioemail: 'Receber e-mails com notificaçoes e promoçoes?',
+    welcometitle: 'Obrigado por começar!',
+    welcomemassage: 'Faça seus pedidos e salve suas padarias favoritas assim teremos base para recomendar o que mais te agrade!',
+    home: 'Inicio',
+    edit: 'Editar Dados',
+    myadress: 'Meus Endereços',
+    myavaluations: 'Minhas avalizções',
+    geral: 'Geral',
+    suggestions: 'Sugerir Padarias',
+    clearhistory: 'Limpar Historico de busca',
+    contact: 'Fale Conosco',
+    licence: 'Termos de uso',
+    invite: 'Convidar',
+    logoff: 'Sair'
+} 

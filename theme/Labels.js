@@ -24,5 +24,15 @@ export const Labels = {
     contact: 'Fale Conosco',
     licence: 'Termos de uso',
     invite: 'Convidar',
-    logoff: 'Sair'
+    logoff: 'Sair',
+    save: 'Salvar',
+    add: 'Adicionar',
+    new: 'Novo',
+    street: 'Rua',
+    number: 'Numero',
+    zipcode: 'CEP',
+    district: 'Bairro',
+    referency: 'Referencia',
+    state: 'Estado',
+    city: 'Cidade'
 } 

@@ -1,51 +1,90 @@
 import React, { Component } from 'react'
-import { View,ScrollView, Text, ActivityIndicator, StyleSheet } from 'react-native'
+import { View, ScrollView, Text, ActivityIndicator, StyleSheet, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import {
     Container,
     Header,
     Content,
     Item,
+    Icon,
     Body,
+    Right,
     Input,
     Button,
     Footer,
     FooterTab,
     CheckBox
 } from 'native-base';
-// import {
-//     changeEmail,
-//     changePassword,
-//     changeConfirmPassword,
-//     changeNomatchpassword,
-//     changePhone,
-//     changeName,
-//     authEmail,
-//     register
-// } from '../actions/AuthActions';
+import {
+    getAdress
+} from '../actions/AddressActions'
 import { Labels } from '../../theme/Labels'
-import { Colors } from '../../theme/Colors'
+import { Colors, headerColor } from '../../theme/Colors'
 import { Images } from '../../theme/Images'
 import Background from './Background'
 import CardAddress from './CardAddress'
+import { Actions } from 'react-native-router-flux'
+import _ from 'lodash'
+import {  Location } from 'expo';
+
+
+
 
 class Address extends Component {
-    _cardAddress(){
-       return(
-        <CardAddress 
-        type = 'Casa'
-        street='Alto Paraguai'/>
-       )
+    componentWillMount() {
+        this.props.getAdress()
+        this._createDataSource(this.props.addresslist)
+        this._getPosition()
     }
-    
+    componentWillReceiveProps(nextProps) {
+        this._createDataSource(nextProps.addresslist)
+    }
+
+    _createDataSource(data) {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+        this.list = ds.cloneWithRows(data)
+    }
+    _getPosition = async () =>{
+
+        let position = await Location.getCurrentPositionAsync()
+
+        console.log('location' , position)
+    }
+
+    _renderBtn() {
+        if (this.props.loading) {
+            return (
+                <ActivityIndicator size="large" />
+            )
+        }
+        return (
+            <Button full style={{ flexDirection: 'row', }}
+                onPress={() => Actions.FormAddress()}
+                accessibilityLabel={Labels.new}
+                style={styles.buttom}>
+                <Text>{Labels.new}</Text>
+            </Button>
+        )
+    }
+
     render() {
         return (
             <Background>
-               <ScrollView>
-                <Container style={{ padding: 10 }}>
-                   {this._cardAddress()} 
+                <Container>
+                    <Content>
+                        <ListView
+
+                            enableEmptySections
+                            dataSource={this.list}
+                            renderRow={data => <CardAddress address={data} />}
+                        />
+                    </Content>
+                    <Footer style={{backgroundColor: 'transparent'}}>
+                        <FooterTab>
+                            {this._renderBtn()}
+                        </FooterTab>
+                    </Footer>
                 </Container>
-                </ScrollView>
             </Background>
 
         );
@@ -60,19 +99,27 @@ let styles = StyleSheet.create({
         marginTop: 10,
         backgroundColor: Colors.button,
     },
-    texterror: {
-        color: '#ff0000',
-        fontSize: 18
+    text: {
+        color: headerColor,
+        fontFamily: 'Roboto',
+        fontWeight: '500',
+        fontSize: 14,
     },
 
 });
 
 const mapStateToProps = state => {
-    return (
-        {
-            null:null
-        }
-    );
+    
+    const addresslist = _.map(state.AddressListReducer, (val, uid) => {
+        return { ...val, uid }
+    })
+    return {
+        addresslist
+    }
 }
 
-export default connect(mapStateToProps, null)(Address);
+
+export default connect(mapStateToProps,
+    {
+        getAdress
+    })(Address);

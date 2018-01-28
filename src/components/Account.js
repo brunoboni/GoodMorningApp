@@ -30,11 +30,6 @@ import { Images } from '../../theme/Images'
 import Background from './Background'
 
 class Account extends Component {
-    // componentWillMount(){
-    //     const {email} = this.props
-    //     this.getUser(email);
-    // }
-
     _register() {
 
         const { name, email, password, phone, confirmpassword, checkemail } = this.props;

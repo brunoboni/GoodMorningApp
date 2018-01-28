@@ -52,28 +52,16 @@ const getDrawerIcon = (index) => {
   let icon = 'md-analytics';
   switch (index) {
     case 0:
-      icon = 'md-analytics';
-      break;
-    case 1:
-      icon = 'md-aperture';
-      break;
-    case 2:
-      icon = 'md-attach';
-      break;
-    case 3:
-      icon = 'md-bonfire';
-      break;
-    case 4:
-      icon = 'logo-android';
-      break;
-    case 5:
       icon = 'md-home';
       break;
-    case 6:
-      icon = 'md-assignment';
+    case 1:
+      icon = 'md-build';
+      break;
+    case 2:
+      icon = 'md-locate';
       break;
     default:
-      icon = 'md-analytics';
+      icon = 'md-locate';
       break;
   }
   return icon;
@@ -94,9 +82,9 @@ const setNavigationOptions = (idx) => ({
   }),
 });
 const stackNavRoutes = {
-  Inicio: { screen: StackNavigator({ screen: { screen: Welcome } }, setNavigationOptions(5)) },
-  'Meus Dados': { screen: StackNavigator({ screen: { screen: Account } }, setNavigationOptions(4)) },
-  'Meus Endereços': { screen: StackNavigator({ screen: { screen: Address } }, setNavigationOptions(4)) },
+  Inicio: { screen: StackNavigator({ screen: { screen: Welcome } }, setNavigationOptions(0)) },
+  'Meus Dados': { screen: StackNavigator({ screen: { screen: Account } }, setNavigationOptions(1)) },
+  'Meus Endereços': { screen: StackNavigator({ screen: { screen: Address } }, setNavigationOptions(2)) },
   // EditarDados
   // MeusEnderecos
   // SugerirPadarias

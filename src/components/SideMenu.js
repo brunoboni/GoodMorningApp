@@ -24,7 +24,7 @@ class SideMenu extends React.Component{
 <ScrollView style={styles.container}>
     <View style={styles.header}>
       <View style={styles.headerLogo}>
-        <Icon name="md-open" size={50} color={drawerLogoColor} />
+        <Icon name="md-contact" size={50} color={drawerLogoColor} />
       </View>
       <View style={styles.subTitle}>
         <Text style={styles.drawerTitle}>{this.props.name}</Text>
